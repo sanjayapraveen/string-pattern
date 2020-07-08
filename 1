@@ -1,0 +1,47 @@
+You are given an integer, N. Your task is to print an alphabet rangoli of size N. (Rangoli is a form of Indian folk art based on creation of patterns).
+
+Input:
+5
+
+Output:
+--------e--------
+------e-d-e------
+----e-d-c-d-e----
+--e-d-c-b-c-d-e--
+e-d-c-b-a-b-c-d-e
+--e-d-c-b-c-d-e--
+----e-d-c-d-e----
+------e-d-e------
+--------e--------
+
+Input:
+3
+
+Output:
+----c----
+--c-b-c--
+c-b-a-b-c
+--c-b-c--
+----c----
+
+Code:
+import string
+def print_rangoli(size):
+    n = size
+    alph = string.ascii_lowercase
+    width = 4 * n - 3
+
+    ans = []
+    for i in range(n):
+        left = '-'.join(alph[n - i - 1:n])
+        mid = left[-1:0:-1] + left
+        final = mid.center(width, '-')
+        ans.append(final)
+
+    if len(ans) > 1:
+        for i in ans[n - 2::-1]:
+            ans.append(i)
+    ans = '\n'.join(ans)
+    print(ans)
+n = int(input())
+print_rangoli(n)
